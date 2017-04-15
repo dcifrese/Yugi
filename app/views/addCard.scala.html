@@ -1,0 +1,28 @@
+@import forms.CardForm
+@import helper.inputText
+@(message: String, cardForm: Form[CardForm])
+@implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
+
+@main("Card", message) {
+
+
+    <div class="container">
+    @if(cardForm.hasGlobalErrors) {
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert">x</a>
+            <p class="error">
+            @cardForm.globalError.message
+            </p>
+        </div>
+    }
+
+    <h3>Create New Card</h3>
+    @helper.form(action = routes.CardController.addCard(), 'class -> "well form-horizontal") {
+        @inputText(cardForm("title"), '_label -> "Title")
+        @inputText(cardForm("description"), '_label -> "Description")
+        <div class="controls">
+            <input type="submit" href="userContent" class="btn btn-primary"/>
+
+        </div>
+    }
+}

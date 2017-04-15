@@ -1,0 +1,31 @@
+@import forms.UserForm
+@import helper.inputPassword
+@(message: String, userForm: Form[UserForm])
+@implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
+
+@main("Login", message) {
+
+    <div class="container">
+    @if(userForm.hasGlobalErrors) {
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert">x</a>
+            <p class="error">
+            @userForm.globalError.message
+            </p>
+        </div>
+    }
+
+    <h3>Please Login</h3>
+
+    <label>Log in to access your cards.</label>
+    @helper.form(action = routes.CrudController.login(), 'class -> "well form-horizontal") {
+        @helper.inputText(userForm("name"), '_label -> "Name")
+        @helper.inputPassword(userForm("password"), '_label -> "Password")
+
+        <div class="controls">
+            <input type="submit" class="btn btn-primary"/>
+            <a href="addUser" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Sign Up</a>
+        </div>
+
+    }
+}

@@ -1,0 +1,34 @@
+﻿*************************Yu Gi Oh No Don't Sue Us********************************
+								
+			VISION STATEMENT
+Yu Gi Oh No Don't Sue Us is a web application that maintains a database of the 
+cards in the Yu Go Oh™ trading card game. User can sign up to be database 
+curators, at which point they can add cards that are not already in the 
+database. 
+
+			SOFTWARE REQUIREMENTS
+In order to run the application, the following software is needed:
+	#JDK
+	#mySQL
+	#playframework
+	#scala 
+	
+				STATUS REPORT
+Currently, the application has working business logic. Users are able to sign 
+up, log in, and submit cards to the database. All this information persists, but 
+the application as a whole could be improved visiually, and funtioanlly.  
+
+				ITERATION PLAN
+If work continues on this project, we would focus on three main improvements. 
+Firstly, the main page does display the cards in the database, but not
+correctly. Secondly, we would like to implement more robust data validation 
+when users enter card data. Third, we would like to implement a means of editing 
+or deleting the cards already present.
+
+				ISSUE LOG
+To this point, there have been three big issues. Figuring out the structure
+of the application (playframework routes and views) was the first big issue we 
+faced. Next, we had to figure out how to create a form for users to enter card 
+data. The last big issue we faced was creating the business logic of the 
+application - storing the user entered data and displaying the data on the main
+page.
