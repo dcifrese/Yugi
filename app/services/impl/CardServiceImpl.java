@@ -4,19 +4,12 @@ package services.impl;
 
 import models.Card;
 import models.enums;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import services.CardService;
-
 import java.util.List;
-//import java.util.logging.Logger;
-
-
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -32,7 +25,6 @@ public class CardServiceImpl implements CardService {
     @Transactional
     public Boolean save(Card card) {
         try {
-
             log.debug("Card save() was called.");
             log.info("Card save() was called.");
             if (card.getTitle() != null && card.getDescription() != null) {
@@ -44,7 +36,6 @@ public class CardServiceImpl implements CardService {
                 } else {
                     // Add new card to the database
                     log.debug("Card added to database, save succeeded.");
-
                     em.persist(card);
                     return true;
                 }
@@ -78,7 +69,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public List<Card> fetchAllTasks() {
-//caps matters I guess
+        //caps matters I guess
         return em.createQuery("from Card", Card.class).getResultList();
     }
 }

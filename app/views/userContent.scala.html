@@ -1,6 +1,7 @@
 @import forms.CardForm
-@(message: String)
 
+
+@(message: String)
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
 @main("YU-GI-OH", message) {
@@ -10,13 +11,13 @@
     <label>Please click "Add Card" to do... something.</label>
     @helper.form(action = routes.CardController.addCard(), 'class -> "well form-horizontal") {
 
-
         <div class="container">
+
             <div class="controls">
-
             <a href="addCard" class="btn btn-primary" role="button" aria-disabled="false">Add Card</a>
-
+            <a href="home" class="btn btn-primary" role="button" aria-disabled="false">Logout</a>
             </div>
+
             <ul id="tasks"></ul>
 
         </div>

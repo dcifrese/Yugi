@@ -55,4 +55,12 @@ public class FormsTest {
         UserForm almostValidPassword = new UserForm("validName", "almost-Valid=Password^_^");
         Assert.assertTrue(almostValidPassword.validate().equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_]."));
     }
+
+
+//Crazy Path
+    @Test
+    public void nullUser() {
+        UserForm nullUser = null;
+        Assert.assertTrue(nullUser == null);
+    }
 }

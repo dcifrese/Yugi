@@ -1,23 +1,15 @@
 
 package controllers;
 
-
-
 import org.apache.log4j.Logger;
 import org.apache.logging.log4j.scala.Logging;
-
-
-
-
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 import views.html.userContent;
 import java.util.List;
 import models.Card;
-
 import services.CardService;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -37,12 +29,6 @@ public class Application extends Controller {
 
     public Result userContent() {
         logger.info("userContent() endpoint requested");
-        //return ok(userContent.render("Hello!!!", play.data.Form.form(forms.CardForm.class)));
         return ok(userContent.render("Home Page"));
     }
-
-
-
-
-
 }

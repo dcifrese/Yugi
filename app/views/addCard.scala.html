@@ -1,10 +1,11 @@
 @import forms.CardForm
 @import helper.inputText
+
+
 @(message: String, cardForm: Form[CardForm])
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
 @main("Card", message) {
-
 
     <div class="container">
     @if(cardForm.hasGlobalErrors) {
@@ -22,7 +23,6 @@
         @inputText(cardForm("description"), '_label -> "Description")
         <div class="controls">
             <input type="submit" href="userContent" class="btn btn-primary"/>
-
         </div>
     }
 }

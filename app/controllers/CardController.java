@@ -6,28 +6,20 @@ import forms.CardForm;
 import javax.inject.Inject;
 import models.Card;
 import models.enums;
-
 import org.apache.log4j.Logger;
 import org.apache.logging.log4j.scala.Logging;
-
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
-
 import javax.inject.Named;
-
 import play.data.Form;
 import play.mvc.Result;
-
 import services.CardService;
-
 import views.html.addUser;
 import views.html.index;
 import views.html.login;
 import views.html.userContent;
 import views.html.addCard;
-
 import java.util.List;
-
 
 
 @Named
@@ -49,7 +41,6 @@ public class CardController extends play.mvc.Controller {
             try {
                 if (cardService.save(card)) {
                     logger.info("addCard had a good request.");
-                    //return ok(userContent.render("Card Added."));
                     return redirect(routes.Application.userContent());
                 } else {
                     logger.info("addCard had a bad request.");

@@ -7,10 +7,8 @@ import forms.CardForm;
 import javax.inject.Inject;
 import models.User;
 import models.enums;
-
 import org.apache.log4j.Logger;
 import org.apache.logging.log4j.scala.Logging;
-
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import play.data.Form;

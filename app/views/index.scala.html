@@ -1,5 +1,7 @@
 @import forms.UserForm
 @import helper.inputPassword
+
+
 @(message: String, userForm: Form[UserForm])
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
@@ -26,6 +28,5 @@
             <input type="submit" class="btn btn-primary"/>
             <a href="addUser" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Sign Up</a>
         </div>
-
     }
 }

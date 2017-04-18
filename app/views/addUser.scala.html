@@ -1,11 +1,12 @@
 @import forms.UserForm
 @import helper.inputText
 @import helper.inputPassword
+
+
 @(message: String, userForm: Form[UserForm])
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
 @main("User", message) {
-
 
     <div class="container">
     @if(userForm.hasGlobalErrors) {
@@ -19,7 +20,7 @@
 
     <h3>Create New User Account</h3>
     @helper.form(action = routes.CrudController.addUser(), 'class -> "well form-horizontal") {
-        @inputText(userForm("name"), '_showConstraints -> false,'_label -> "Name")
+        @inputText(userForm("name"), '_showConstraints -> false,'_label -> "Name", 'placeholder -> "Test Placeholder")
         @helper.inputPassword(userForm("password"), '_showConstraints -> false,'_label -> "Password")
         <div class="controls">
             <input type="submit" class="btn btn-primary"/>

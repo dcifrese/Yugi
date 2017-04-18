@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -18,9 +19,7 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    public User() {
-
-    }
+    public User() {}
 
     public User(String name, String password) {
         this.name = name;

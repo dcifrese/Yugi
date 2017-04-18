@@ -6,6 +6,7 @@ import play.data.validation.Constraints.MaxLength;
 import play.data.validation.Constraints.Pattern;
 import play.data.validation.Constraints.Required;
 
+
 public class UserForm  {
 
     @Required
@@ -15,6 +16,7 @@ public class UserForm  {
     @Required
     @Pattern(value="^[A-Za-z0-9!@#$%^&*()_]{6,20}$" , message = "Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].")
     private String password;
+
 
     public UserForm() { }
 
