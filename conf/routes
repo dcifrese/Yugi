@@ -14,7 +14,7 @@ GET     /userContent                @controllers.Application.userContent()
 GET     /tasks                       @controllers.CardController.getTasks()
 
 # Login form requests
-GET     /addUser                    @controllers.CrudController.addUser()
+GET     /addUser                    @controllers.CrudController.renderAddUser()
 POST	/addUser					@controllers.CrudController.addUser()
 POST 	/login      			    @controllers.CrudController.login()
 
@@ -23,7 +23,7 @@ POST 	/login      			    @controllers.CrudController.login()
 #Card form requests
 
 
-GET     /addCard                       @controllers.CardController.addCard()
+GET     /addCard                       @controllers.CardController.renderAddCard()
 POST    /addCard                       @controllers.CardController.addCard()
 
 

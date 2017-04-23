@@ -16,7 +16,6 @@ import play.mvc.Result;
 import services.UserService;
 import views.html.addUser;
 import views.html.index;
-import views.html.login;
 import views.html.userContent;
 
 
@@ -26,6 +25,12 @@ public class CrudController extends play.mvc.Controller {
     final static Logger logger = Logger.getLogger(CrudController.class);
 
     @Inject private UserService userService;
+
+    public Result renderAddUser(){
+
+        return ok(addUser.render("Please Create User.", Form.form(UserForm.class)));
+    }
+
 
     public Result addUser() {
         logger.info("addUser() called. Endpoint request.");
@@ -40,7 +45,7 @@ public class CrudController extends play.mvc.Controller {
             try {
                 if (userService.save(user)) {
                     logger.info("addUser had a good request.");
-                    return ok(login.render("User Created. Please login.", form));
+                    return ok(index.render("User Created. Please login.", form));
                 } else {
                     logger.info("addUser had a bad request. Attempt to duplicate users.");
                     form.reject("Username Not Available.");
@@ -76,7 +81,7 @@ public class CrudController extends play.mvc.Controller {
                     case PASS_FAIL:
                         logger.info("login() had a bad request. User entered invalid password.");
                         // Incorrect password, prompt user to try again
-                        return ok(login.render("Invalid Password", form));
+                        return ok(index.render("Invalid Password", form));
 
                     case SUCCESS:
                         logger.info("login() had a good request.");

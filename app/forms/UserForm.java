@@ -41,7 +41,7 @@ public class UserForm  {
         this.password = password;
     }
 
-    public String validate() {
+   /* public String validate() {
 
         if (!name.matches("^[a-zA-Z0-9._-]{3,}$")) {
             return "Name must be at least 3 characters in length, and can only contain [a-zA-Z0-9._-].";
@@ -51,6 +51,8 @@ public class UserForm  {
         }
         return null;
     }
+
+    */
 
     @Override
     public String toString() {

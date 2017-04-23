@@ -29,6 +29,12 @@ public class CardController extends play.mvc.Controller {
 
     @Inject private CardService cardService;
 
+
+    public Result renderAddCard(){
+
+        return ok(addCard.render("Card Created.", Form.form(CardForm.class)));
+    }
+
     public Result addCard() {
         logger.info("addCard() called. Endpoint request.");
 
@@ -52,8 +58,6 @@ public class CardController extends play.mvc.Controller {
                 return badRequest(addCard.render("Card", form));
             }
         }
-
-
     }
 
     public Result getTasks() {

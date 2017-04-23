@@ -20,7 +20,7 @@
 
     <h3>Create New User Account</h3>
     @helper.form(action = routes.CrudController.addUser(), 'class -> "well form-horizontal") {
-        @inputText(userForm("name"), '_showConstraints -> false,'_label -> "Name", 'placeholder -> "Test Placeholder")
+        @inputText(userForm("name"), '_showConstraints -> false,'_label -> "Name")
         @helper.inputPassword(userForm("password"), '_showConstraints -> false,'_label -> "Password")
         <div class="controls">
             <input type="submit" class="btn btn-primary"/>

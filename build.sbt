@@ -1,4 +1,4 @@
-name := "SLF4JTest"
+name := "rocco"
 
 version := "1.0-SNAPSHOT"
 
