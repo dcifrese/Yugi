@@ -4,26 +4,26 @@
 
 # Home page
 GET     /                           @controllers.Application.index()
-GET     /home                           @controllers.Application.index()
+GET     /home                       @controllers.Application.index()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Authenticated user content
 GET     /userContent                @controllers.Application.userContent()
-GET     /tasks                       @controllers.CardController.getTasks()
+GET     /tasks                      @controllers.CardController.getTasks()
 
 # Login form requests
 GET     /addUser                    @controllers.CrudController.renderAddUser()
-POST	/addUser					@controllers.CrudController.addUser()
-POST 	/login      			    @controllers.CrudController.login()
+POST	/addUser                    @controllers.CrudController.addUser()
+POST 	/login                      @controllers.CrudController.login()
 
 
 
 #Card form requests
 
 
-GET     /addCard                       @controllers.CardController.renderAddCard()
-POST    /addCard                       @controllers.CardController.addCard()
+GET     /addCard                    @controllers.CardController.renderAddCard()
+POST    /addCard                    @controllers.CardController.addCard()
 
 

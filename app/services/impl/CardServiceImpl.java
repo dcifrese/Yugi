@@ -65,8 +65,6 @@ public class CardServiceImpl implements CardService {
         }
     }
 
-
-
     @Override
     public List<Card> fetchAllTasks() {
         //caps matters I guess

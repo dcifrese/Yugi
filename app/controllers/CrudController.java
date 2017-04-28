@@ -38,23 +38,18 @@ public class CrudController extends play.mvc.Controller {
         Form<UserForm> form = Form.form(UserForm.class).bindFromRequest();
 
         if (form.hasErrors() || form.hasGlobalErrors()) {
-            return badRequest(addUser.render("User", form));
+            return badRequest(addUser.render("Please Create User.", form));
+        }
+
+        UserForm userForm = form.get();
+        User user = new User(userForm.getName(), userForm.getPassword());
+        if (userService.save(user)) {
+            logger.info("addUser had a good request.");
+            return ok(index.render("User Created. Please login.", form));
         } else {
-            UserForm userForm = form.get();
-            User user = new User(userForm.getName(), userForm.getPassword());
-            try {
-                if (userService.save(user)) {
-                    logger.info("addUser had a good request.");
-                    return ok(index.render("User Created. Please login.", form));
-                } else {
-                    logger.info("addUser had a bad request. Attempt to duplicate users.");
-                    form.reject("Username Not Available.");
-                    return badRequest(addUser.render("Username Not Available", form));
-                }
-            } catch (DataIntegrityViolationException ex) {
-                logger.info("addUser had a bad request. DataIntegrityViolationException caught.");
-                return badRequest(addUser.render("User", form));
-            }
+            logger.info("addUser had a bad request. Attempt to duplicate users.");
+            form.reject("name", "Username Not Available.");
+            return badRequest(addUser.render("Username Not Available", form));
         }
     }
 

@@ -18,9 +18,7 @@ public class Card {
     @Column(name = "description", nullable = false)
     private String description;
 
-    public Card() {
-
-    }
+    public Card() {}
 
     public Card(String title, String description) {
         this.title = title;
