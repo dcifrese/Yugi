@@ -34,13 +34,18 @@ public class FormsTest {
 
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(shortName);
         Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
-        String error = new String("");
+
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Name must be at least 3 characters in length, and can only contain [a-zA-Z0-9._-].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("Name must be at least 3 characters in length, and can only contain [a-zA-Z0-9._-]."));
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 
 
@@ -49,13 +54,19 @@ public class FormsTest {
         UserForm badCharsName = new UserForm("<>?:{}|/", "validPassword");
 
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(badCharsName);
-        String error = new String("");
+        Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
+
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Name must be at least 3 characters in length, and can only contain [a-zA-Z0-9._-].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("Name must be at least 3 characters in length, and can only contain [a-zA-Z0-9._-]."));
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 
 
@@ -64,13 +75,19 @@ public class FormsTest {
         UserForm almostValidName = new UserForm("almost_Valid.N@me-not", "validPassword");
 
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(almostValidName);
-        String error = new String("");
+        Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
+
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            //logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Name must be at least 3 characters in length, and can only contain [a-zA-Z0-9._-].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("Name must be at least 3 characters in length, and can only contain [a-zA-Z0-9._-]."));
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 
 
@@ -79,14 +96,19 @@ public class FormsTest {
         UserForm shortPassword = new UserForm("validName", "12345");
 
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(shortPassword);
-        String error = new String("");
+        Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
+
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            //logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_]."));
-
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 
     @Test
@@ -94,13 +116,19 @@ public class FormsTest {
         UserForm longPassword = new UserForm("validName", "abcdefghijklmnopqrstuvwxyz");
 
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(longPassword);
-        String error = new String("");
+        Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
+
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            //logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_]."));
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 
     @Test
@@ -108,13 +136,19 @@ public class FormsTest {
         UserForm badCharPassword = new UserForm("validName", "{}[]<>/?");
 
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(badCharPassword);
-        String error = new String("");
+        Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
+
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            //logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_]."));
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 
     @Test
@@ -122,13 +156,19 @@ public class FormsTest {
         UserForm almostValidPassword = new UserForm("validName", "almost-Valid=Password^_^");
 
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(almostValidPassword);
-        String error = new String("");
+        Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
+
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            //logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_]."));
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 
 
@@ -149,14 +189,17 @@ public class FormsTest {
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(validNameBlankPassword);
         Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
 
-        String error = new String("");
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            //logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("error.required"));
-
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 
     @Test
@@ -168,13 +211,17 @@ public class FormsTest {
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(validNameNullPassword);
         Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
 
-        String error = new String("");
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            //logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("error.required"));
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 
     @Test
@@ -186,16 +233,17 @@ public class FormsTest {
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(blankNameValidPassword);
         Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
 
-        String error = new String("");
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            //logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].")) {
+                constraintErrors++;
+            }
         }
-
-
-        logger.info("this is our error");
-        logger.info(error);
-        //Assert.assertTrue(error.equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].error.required"));
+        Assert.assertTrue("Must have 2 constraint errors", constraintErrors == 2);
     }
 
     @Test
@@ -205,14 +253,18 @@ public class FormsTest {
         nullNameValidPassword.setPassword("valid");
 
         Set<ConstraintViolation<UserForm>> constraintViolations = validator.validate(nullNameValidPassword);
-        Assert.assertTrue(hasConstraintViolations(nullNameValidPassword));
+        Assert.assertTrue(constraintViolations!=null && constraintViolations.size() > 0);
 
-        String error = new String("");
+        int constraintErrors = 0;
 
         for (ConstraintViolation<UserForm> cv : constraintViolations) {
-            error += cv.getMessage();
+            //logger.info("'" + cv.getMessage() + "'");
+            if (cv.getMessage().equals("error.required")) {
+                constraintErrors++;
+            } else if (cv.getMessage().equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].")) {
+                constraintErrors++;
+            }
         }
-
-        Assert.assertTrue(error.equals("Password must be 6-20 characters in length, and only contain [A-Za-z0-9!@#$%^&*()_].error.required"));
+        Assert.assertTrue("Must have at least 1 constraint error", constraintErrors > 0);
     }
 }
